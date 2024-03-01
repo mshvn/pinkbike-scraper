@@ -28,3 +28,8 @@ Pinkbike is the world's largest mountain biking community, covering the latest i
 Далее считается основная статистика, затем (используя MySQl) передаем полученные значения для визуализации в DataLens.
 
 Описанная выше процедура происходит каждые 4 часа.
+
+## Примеры:
+
+![Datalens](datalens.png)
+![Telegram](telegram.png)
