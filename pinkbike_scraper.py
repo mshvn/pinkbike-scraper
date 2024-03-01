@@ -232,7 +232,7 @@ def events_to_telegram(df_out, BOT_TOKEN, CHANNEL_ID, URL):
 
 
 default_args = {
-    "email": ["mashuravin@edu.hse.ru"],
+    "email": ["example@example.com"],
     "email_on_failure": False,
     "email_on_retry": False,
     # 'retries': 1,
@@ -278,7 +278,7 @@ with DAG(
             .getOrCreate()
         )
         df = spark.createDataFrame(df_out_news)
-        df.write.mode("overwrite").parquet("/user/shuravin/DATA/DT=" + current_date)
+        df.write.mode("overwrite").parquet("/user/user_name/DATA/DT=" + current_date)
 
 
     @task(task_id="agg_pink_data")
@@ -294,7 +294,7 @@ with DAG(
         )
 
         # new version
-        df = spark.read.parquet("/user/shuravin/DATA/DT=" + current_date)
+        df = spark.read.parquet("/user/user_name/DATA/DT=" + current_date)
         
         df_agg = df.agg(max(col("comments")).alias("Max"), 
                         min(col("comments")).alias("Min"), 
@@ -304,7 +304,7 @@ with DAG(
         print("df_agg:")
         print(df_agg.show())
 
-        df_agg.write.mode("overwrite").parquet("/user/shuravin/AGG2/DT=" + current_date)
+        df_agg.write.mode("overwrite").parquet("/user/user_name/AGG/DT=" + current_date)
 
 
     @task(task_id="to_mysql_pink")
@@ -321,7 +321,7 @@ with DAG(
                     .getOrCreate()
 
         # old version
-        df = spark.read.parquet("/user/shuravin/AGG2")
+        df = spark.read.parquet("/user/user_name/AGG")
 
         df\
             .write\
@@ -330,8 +330,8 @@ with DAG(
             .option("driver","com.mysql.cj.jdbc.Driver")\
             .option("url", "jdbc:mysql://localhost:3306/hse")\
             .option("dbtable", "pinkbike_comments")\
-            .option("user", "arhimag")\
-            .option("password", "password57")\
+            .option("user", "user_name_001")\
+            .option("password", "secret_password")\
             .save()
 
 
