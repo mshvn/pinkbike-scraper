@@ -31,5 +31,8 @@ Pinkbike is the world's largest mountain biking community, covering the latest i
 
 ## Примеры:
 
+Скриншот Yandex DataLens:
 ![Datalens](datalens.png)
+
+Скриншот телеграм-канала:
 ![Telegram](telegram.png)
