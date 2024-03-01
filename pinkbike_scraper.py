@@ -293,7 +293,6 @@ with DAG(
             .getOrCreate()
         )
 
-        # new version
         df = spark.read.parquet("/user/user_name/DATA/DT=" + current_date)
         
         df_agg = df.agg(max(col("comments")).alias("Max"), 
@@ -320,7 +319,6 @@ with DAG(
                     .config("spark.jars", "/usr/share/java/mysql-connector-java-8.2.0.jar")\
                     .getOrCreate()
 
-        # old version
         df = spark.read.parquet("/user/user_name/AGG")
 
         df\
